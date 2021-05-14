@@ -1,0 +1,27 @@
+<mat-toolbar *ngIf="successMsg" color="accent">{{successMsg}}</mat-toolbar>
+<mat-toolbar *ngIf="errorMsg" color="warn">{{errorMsg}}</mat-toolbar>
+
+<div class="form-container">
+    <form (submit)="createVakcina()">
+        <mat-form-field>
+            <input [(ngModel)]="name" name="name" matInput placeholder="Név">
+        </mat-form-field>
+        <mat-form-field>
+            <input [(ngModel)]="age" type="number" name="age" matInput placeholder="Életkor">
+        </mat-form-field>
+        <mat-form-field>
+            <input [(ngModel)]="email" name="email" matInput placeholder="Email">
+        </mat-form-field>
+        <mat-form-field>
+            <input [(ngModel)]="telnum" type="tel" name="telnum" matInput placeholder="Telefonszám">
+        </mat-form-field>
+        <h4>Rendelkezik TAJ-számmal?</h4>
+        <mat-radio-group [(ngModel)]="taj" name="taj">
+            <mat-radio-button [value]=true>Igen</mat-radio-button>
+            <br>
+            <mat-radio-button [value]=false>Nem</mat-radio-button>
+        </mat-radio-group>
+        <br><br>
+        <button mat-raised-button color="primary">Regisztrálok</button>
+    </form>
+</div>

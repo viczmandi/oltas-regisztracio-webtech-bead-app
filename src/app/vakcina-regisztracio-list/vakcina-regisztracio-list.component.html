@@ -1,0 +1,41 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<mat-toolbar *ngIf="successMsg" color="accent">{{successMsg}}</mat-toolbar>
+<mat-toolbar *ngIf="errorMsg" color="warn">{{errorMsg}}</mat-toolbar>
+
+<div *ngIf="!loading && !errorMsg">
+    <table mat-table [dataSource]="vakcina" class="mat-elevation-z8">
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Dátum</th>
+            <td mat-cell *matCellDef="let v">{{v.date | date:'yyyy.MM.dd'}}</td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Név</th>
+            <td mat-cell *matCellDef="let v">{{v.name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef>Életkor</th>
+            <td mat-cell *matCellDef="let v">{{v.age}}</td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let v">{{v.email}}</td>
+        </ng-container>
+        <ng-container matColumnDef="telnum">
+            <th mat-header-cell *matHeaderCellDef>Telefonszám</th>
+            <td mat-cell *matCellDef="let v">{{v.telnum}}</td>
+        </ng-container>
+        <ng-container matColumnDef="taj">
+            <th mat-header-cell *matHeaderCellDef>TAJ</th>
+            <td mat-cell *matCellDef="let v">{{v.taj==true?'Igen':'Nem'}}</td>
+        </ng-container>
+        <ng-container matColumnDef="törlés">
+            <th mat-header-cell *matHeaderCellDef>Cancel</th>
+            <td mat-cell *matCellDef="let v"><button (click)="cancelVakcina(v._id)" mat-raised-button
+                    color="warn">Törlés</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let vakcina; columns: columns"></tr>
+    </table>
+</div>
